@@ -10,6 +10,8 @@
 int main()
 {
 	SD sd(2, 0, true, false, 1);
+	//Initialize MAC Spam Detection Module.  
+	//THRESHOLD, HUMANIZATION THRESHOLD, ENABLED, HUMANIZED, USERCOUNT
 
 	while (true)
 	{

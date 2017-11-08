@@ -14,7 +14,7 @@ SD::SD(int spamThreshold, int spamHumanization, bool enabled, bool humanizedDete
 	m_spamHumanization = spamHumanization;
 	m_enabled = enabled;
 	m_humanizedDetection = humanizedDetection;
-	for (int i = 0; i < userCount; i++)
+	for (int i = 0; i < userCount + 1; i++)
 	{
 		std::vector<int> null;
 		null.push_back(NULL);
@@ -64,9 +64,6 @@ bool SD::check(int userID, std::string message)
 	if (m_enabled)
 	{
 		std::time_t _t = std::time(0);
-		std::cout << m_Vector[userID][0] << std::endl;
-		std::cout << m_Vector[userID][1] << std::endl;
-
 		if (m_Vector[userID][0] != NULL)
 		{
 			double diff = difftime(_t, m_Vector[userID][1]);
@@ -78,7 +75,7 @@ bool SD::check(int userID, std::string message)
 			}
 			else
 			{
-				if (m_Vector[userID][0] < 2)
+				if (m_Vector[userID][0] < 3)
 				{
 					m_Vector[userID][0]++;
 					m_Vector[userID][1] = _t;
@@ -86,7 +83,6 @@ bool SD::check(int userID, std::string message)
 				}
 				else
 				{
-					std::cout << diff << std::endl;
 					return false;
 				}
 			}
